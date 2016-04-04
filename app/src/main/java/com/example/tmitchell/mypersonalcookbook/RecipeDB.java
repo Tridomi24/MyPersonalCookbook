@@ -21,18 +21,23 @@ public class RecipeDB {
      **************************/
     private int _id;
     private String _title;
-    private Bitmap _image;
+    private String _image;
     private String _category;
     private int _serves;
-    private ArrayList _ingredientList;
+    private String _ingredientList;
     private String _directions;
     private String _comments;
     private int _prepTime;
     private int _cookTime;
 
+
+    public RecipeDB(){
+
+    }
+
     //Constructor
-    public RecipeDB(int id, String title, Bitmap image, String category, int serves,
-                    ArrayList ingredientList, String directions, String comments,
+    public RecipeDB(int id, String title, String image, String category, int serves,
+                    String ingredientList, String directions, String comments,
                     int prepTime, int cookTime){
         this._id = id;
         this._title = title;
@@ -61,7 +66,7 @@ public class RecipeDB {
         return _title;
     }
 
-    public void set_title(String _title) {
+    public void set_title(int _title) {
         this._title = _title;
     }
 
@@ -69,7 +74,7 @@ public class RecipeDB {
         return _image;
     }
 
-    public void set_image(Bitmap _image) {
+    public void set_image(int _image) {
         this._image = _image;
     }
 
@@ -77,7 +82,7 @@ public class RecipeDB {
         return _category;
     }
 
-    public void set_category(String _category) {
+    public void set_category(int _category) {
         this._category = _category;
     }
 
@@ -97,7 +102,7 @@ public class RecipeDB {
         return _ingredientList;
     }
 
-    public void set_ingredientList(ArrayList _ingredientList) {
+    public void set_ingredientList(int _ingredientList) {
         this._ingredientList = _ingredientList;
     }
 
@@ -105,7 +110,7 @@ public class RecipeDB {
         return _directions;
     }
 
-    public void set_directions(String _directions) {
+    public void set_directions(int _directions) {
         this._directions = _directions;
     }
 
@@ -113,7 +118,7 @@ public class RecipeDB {
         return _comments;
     }
 
-    public void set_comments(String _comments) {
+    public void set_comments(int _comments) {
         this._comments = _comments;
     }
 

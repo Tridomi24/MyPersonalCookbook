@@ -10,6 +10,7 @@ package com.example.tmitchell.mypersonalcookbook;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.AbstractList;
+import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -21,13 +22,17 @@ import android.graphics.Bitmap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 /**
  * Created by Tmitchell on 04/04/2016.
  */
-public class DatabaseHandler  extends SQLiteOpenHelper{
+public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**************************
-        All Static variables
+     * All Static variables
      **************************/
 
     //DB Version
@@ -53,15 +58,15 @@ public class DatabaseHandler  extends SQLiteOpenHelper{
     private static final String KEY_COOK_TIME = "cookTime";
 
     /****************************
-         Creating the Database
+     * Creating the Database
      ****************************/
 
-    public DatabaseHandler( Context context ){
+    public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     /****************************
-        Creating the Tables
+     * Creating the Tables
      ****************************/
 
     @Override
@@ -75,7 +80,7 @@ public class DatabaseHandler  extends SQLiteOpenHelper{
     }
 
     /****************************
-        Upgrading the Database
+     * Upgrading the Database
      ****************************/
 
     @Override
@@ -97,7 +102,7 @@ public class DatabaseHandler  extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
 
         //converts Ingredients ArrayList to a JSON that can be stored
-
+        String ingredients = new Gson().toJson(recipe.get_ingredientList());
 
         //converts image to array that can be stored
         Bitmap img = recipe.get_image();
@@ -108,19 +113,73 @@ public class DatabaseHandler  extends SQLiteOpenHelper{
 
         ContentValues values = new ContentValues();
         values.put(KEY_TITLE, recipe.get_title()); // Recipe Title
-        values.put(KEY_IMAGE,  imgArray); // Recipe Image
+        values.put(KEY_IMAGE, imgArray); // Recipe Image
         values.put(KEY_CATEGORY, recipe.get_category()); // Recipe category
         values.put(KEY_SERVES, recipe.get_serves()); // Recipe Serves
-        //values.put(KEY_INGREDIENTS, ingredients);
-
-
+        values.put(KEY_INGREDIENTS, ingredients);
+        values.put(KEY_DIRECTIONS, recipe.get_directions());
+        values.put(KEY_COMMENTS, recipe.get_prepTime());
+        values.put(KEY_PREP_TIME, recipe.get_prepTime());
+        values.put(KEY_COOK_TIME, recipe.get_cookTime());
 
         // Inserting Row
         db.insert(TABLE_RECIPE, null, values);
         db.close(); // Closing database connection
     }
 
+    //Getting a single recipe
+    RecipeDB getRecipe(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        Cursor cursor = db.query(TABLE_RECIPE, new String[]{KEY_ID, KEY_TITLE, KEY_IMAGE,
+                        KEY_CATEGORY, KEY_SERVES, KEY_INGREDIENTS,
+                        KEY_DIRECTIONS, KEY_COMMENTS, KEY_PREP_TIME, KEY_COOK_TIME}, KEY_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        RecipeDB recipe = new RecipeDB(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
+                cursor.getString(2), cursor.getString(3), cursor.getInt(4), cursor.getString(5),
+                cursor.getString(6), cursor.getString(7), cursor.getInt(8), cursor.getInt(9));
+
+        return recipe;
+    }
+
+    //Get all stored recipes
+    public List<RecipeDB> getAllRecipes() {
+        List<RecipeDB> recipeList = new ArrayList<RecipeDB>();
+
+        //SELECT all Query
+        String selectQuery = "SELECT * FROM " + TABLE_RECIPE;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        //loop through all rows and add to list
+        if (cursor.moveToFirst()) {
+            do {
+                RecipeDB recipe = new RecipeDB();
+
+                recipe.set_id(Integer.parseInt(cursor.getString(0)));
+                recipe.set_title(Integer.parseInt(cursor.getString(1)));
+                recipe.set_image(Integer.parseInt(cursor.getString(2)));
+                recipe.set_category(Integer.parseInt(cursor.getString(3)));
+                recipe.set_serves(Integer.parseInt(cursor.getString(4)));
+                recipe.set_ingredientList(Integer.parseInt(cursor.getString(5)));
+                recipe.set_directions(Integer.parseInt(cursor.getString(6)));
+                recipe.set_comments(Integer.parseInt(cursor.getString(7)));
+                recipe.set_prepTime(Integer.parseInt(cursor.getString(8)));
+                recipe.set_cookTime(Integer.parseInt(cursor.getString(9)));
+
+                //Add to the recipe List
+                recipeList.add(recipe);
+            } while (cursor.moveToNext());
+
+
+        }
+        return recipeList;
+    }
 
 
 }

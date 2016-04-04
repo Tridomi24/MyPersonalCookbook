@@ -7,6 +7,7 @@ package com.example.tmitchell.mypersonalcookbook;
  */
 
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.AbstractList;
 
@@ -15,6 +16,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Created by Tmitchell on 04/04/2016.
@@ -81,6 +86,41 @@ public class DatabaseHandler  extends SQLiteOpenHelper{
         //re-create the tables
         onCreate(db);
     }
+
+    /**
+     * All CRUD(Create, Read, Update, Delete) Operations
+     */
+
+    //Adding a new Recipe
+    // Adding new contact
+    void addRecipe(RecipeDB recipe) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //converts Ingredients ArrayList to a JSON that can be stored
+
+
+        //converts image to array that can be stored
+        Bitmap img = recipe.get_image();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        img.compress(Bitmap.CompressFormat.PNG, 100, bos);
+        byte[] imgArray = bos.toByteArray();
+
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TITLE, recipe.get_title()); // Recipe Title
+        values.put(KEY_IMAGE,  imgArray); // Recipe Image
+        values.put(KEY_CATEGORY, recipe.get_category()); // Recipe category
+        values.put(KEY_SERVES, recipe.get_serves()); // Recipe Serves
+        //values.put(KEY_INGREDIENTS, ingredients);
+
+
+
+        // Inserting Row
+        db.insert(TABLE_RECIPE, null, values);
+        db.close(); // Closing database connection
+    }
+
+
 
 
 }

@@ -1,12 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.tmitchell.mypersonalcookbook.MainActivity">
+    tools:context="com.example.tmitchell.mypersonalcookbook.MainActivity"
+    android:gravity="center_vertical|center|center_horizontal">
+
+    <GridLayout
+        android:id="@+id/theGrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/recipeID_label"
+            android:id="@+id/recipeID_label"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:height="20dp"
+            android:layout_gravity="top|center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/recipeID"
+            android:id="@+id/recipeID"
+            android:layout_marginTop="28dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="fill_horizontal|top|center_horizontal"
+            android:gravity="center"
+            android:height="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/recipeTitle_label"
+            android:id="@+id/recipeTitle_label"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:height="20dp"
+            android:layout_gravity="top|center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/recipeTitle"
+            android:id="@+id/recipeTitle"
+            android:layout_below="@+id/recipeID"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:gravity="center"
+            android:layout_gravity="fill_horizontal|top|center_horizontal"
+            android:height="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Category"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:height="20dp"
+            android:layout_gravity="top|center_horizontal"
+            android:id="@+id/recipeCategory_label" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/recipeCategory"
+            android:id="@+id/recipeCategory"
+            android:layout_below="@+id/recipeTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="44dp"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_gravity="fill_horizontal|top|center_horizontal"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/recipeServes_label"
+            android:id="@+id/recipeServes_label"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:layout_gravity="top|center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/recipeServes"
+            android:id="@+id/recipeServes"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:layout_gravity="top|center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/recipeIngredientsLabel"
+            android:id="@+id/recipeIngredients_label"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:layout_gravity="top|center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/recipeIngredients"
+            android:id="@+id/recipeIngredients"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/recipeDirections_label"
+            android:id="@+id/recipeDirection_label"
+            android:layout_row="5"
+            android:layout_column="0"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:layout_gravity="top|center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/recipeDirections"
+            android:id="@+id/recipeDirections"
+            android:layout_row="5"
+            android:layout_column="1"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:layout_gravity="top|center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Comments:"
+            android:id="@+id/recipeComments_label"
+            android:layout_row="6"
+            android:layout_column="0"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:layout_gravity="top|center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/recipeComments"
+            android:id="@+id/recipeComments"
+            android:layout_row="6"
+            android:layout_column="1"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:layout_gravity="top|center" />
+
+
+    </GridLayout>
 
 </RelativeLayout>

@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">MyPersonalCookbook</string>
+    <string name="recipeID">ID</string>
+    <string name="recipeTitle">Title</string>
+    <string name="recipeCategory">Category</string>
+    <string name="recipeCategory_label">Category</string>
+    <string name="recipeID_label">ID:</string>
+    <string name="recipeTitle_label">Title</string>
+    <string name="recipeServes_label">Serves:</string>
+    <string name="recipeIngredientsLabel">Ingredients:</string>
+    <string name="recipeDirections_label">Directions:</string>
+    <string name="recipeServes">serves</string>
+    <string name="recipeIngredients">Ingredients</string>
+    <string name="recipeDirections">Recipe Directions</string>
+    <string name="recipeComments">Recipe Comments</string>
+
 </resources>

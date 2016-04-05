@@ -9,6 +9,8 @@ package com.example.tmitchell.mypersonalcookbook;
 
 import android.graphics.Bitmap;
 
+import java.io.ByteArrayOutputStream;
+import java.sql.Blob;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +23,7 @@ public class RecipeDB {
      **************************/
     private int _id;
     private String _title;
-    private String _image;
+    private String _imagePath;
     private String _category;
     private int _serves;
     private String _ingredientList;
@@ -41,7 +43,7 @@ public class RecipeDB {
                     int prepTime, int cookTime){
         this._id = id;
         this._title = title;
-        this._image = image;
+        this._imagePath = image;
         this._category = category;
         this._serves = serves;
         this._ingredientList = ingredientList;
@@ -51,9 +53,10 @@ public class RecipeDB {
         this._cookTime = cookTime;
     }
 
-    /*******************
-         GET METHODS
-     *******************/
+    /**************************
+        GET AND SET METHODS
+     **************************/
+
     public int get_id() {
         return _id;
     }
@@ -62,27 +65,28 @@ public class RecipeDB {
         this._id = _id;
     }
 
+
     public String get_title() {
         return _title;
     }
 
-    public void set_title(int _title) {
+    public void set_title(String _title) {
         this._title = _title;
     }
 
-    public Bitmap get_image() {
-        return _image;
+    public String get_image() {
+        return _imagePath;
     }
 
-    public void set_image(int _image) {
-        this._image = _image;
+    public void set_image(String _imagePath) {
+        this._imagePath = _imagePath;
     }
 
     public String get_category() {
         return _category;
     }
 
-    public void set_category(int _category) {
+    public void set_category(String _category) {
         this._category = _category;
     }
 
@@ -90,19 +94,15 @@ public class RecipeDB {
         return _serves;
     }
 
-    /*******************
-        SET METHODS
-     *******************/
-
     public void set_serves(int _serves) {
         this._serves = _serves;
     }
 
-    public ArrayList get_ingredientList() {
+    public String get_ingredientList() {
         return _ingredientList;
     }
 
-    public void set_ingredientList(int _ingredientList) {
+    public void set_ingredientList(String _ingredientList) {
         this._ingredientList = _ingredientList;
     }
 
@@ -110,7 +110,7 @@ public class RecipeDB {
         return _directions;
     }
 
-    public void set_directions(int _directions) {
+    public void set_directions(String _directions) {
         this._directions = _directions;
     }
 
@@ -118,7 +118,7 @@ public class RecipeDB {
         return _comments;
     }
 
-    public void set_comments(int _comments) {
+    public void set_comments(String _comments) {
         this._comments = _comments;
     }
 

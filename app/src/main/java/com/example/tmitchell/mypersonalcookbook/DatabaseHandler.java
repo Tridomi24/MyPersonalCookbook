@@ -8,6 +8,8 @@ package com.example.tmitchell.mypersonalcookbook;
 
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.AbstractList;
 import java.util.List;
@@ -18,13 +20,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
+import android.graphics.BitmapFactory;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 
 /**
  * Created by Tmitchell on 04/04/2016.
@@ -80,7 +79,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     /****************************
-     * Upgrading the Database
+         Upgrading the Database
      ****************************/
 
     @Override
@@ -96,8 +95,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * All CRUD(Create, Read, Update, Delete) Operations
      */
 
-    //Adding a new Recipe
-    // Adding new contact
+    /*********************
+        ADD NEW RECIPE
+     ********************/
     void addRecipe(RecipeDB recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -105,15 +105,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String ingredients = new Gson().toJson(recipe.get_ingredientList());
 
         //converts image to array that can be stored
-        Bitmap img = recipe.get_image();
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        img.compress(Bitmap.CompressFormat.PNG, 100, bos);
-        byte[] imgArray = bos.toByteArray();
+
 
 
         ContentValues values = new ContentValues();
         values.put(KEY_TITLE, recipe.get_title()); // Recipe Title
-        values.put(KEY_IMAGE, imgArray); // Recipe Image
+        values.put(KEY_IMAGE, recipe.get_image()); // Recipe Image
         values.put(KEY_CATEGORY, recipe.get_category()); // Recipe category
         values.put(KEY_SERVES, recipe.get_serves()); // Recipe Serves
         values.put(KEY_INGREDIENTS, ingredients);
@@ -127,7 +124,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    //Getting a single recipe
+    /************************
+        GET SINGLE RECIPE
+     ***********************/
     RecipeDB getRecipe(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -146,6 +145,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return recipe;
     }
 
+    /*********************
+        GET ALL RECIPES
+     ********************/
     //Get all stored recipes
     public List<RecipeDB> getAllRecipes() {
         List<RecipeDB> recipeList = new ArrayList<RecipeDB>();
@@ -162,13 +164,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 RecipeDB recipe = new RecipeDB();
 
                 recipe.set_id(Integer.parseInt(cursor.getString(0)));
-                recipe.set_title(Integer.parseInt(cursor.getString(1)));
-                recipe.set_image(Integer.parseInt(cursor.getString(2)));
-                recipe.set_category(Integer.parseInt(cursor.getString(3)));
+                recipe.set_title((cursor.getString(1)));
+                recipe.set_image(cursor.getString(2));
+                recipe.set_category(cursor.getString(3));
                 recipe.set_serves(Integer.parseInt(cursor.getString(4)));
-                recipe.set_ingredientList(Integer.parseInt(cursor.getString(5)));
-                recipe.set_directions(Integer.parseInt(cursor.getString(6)));
-                recipe.set_comments(Integer.parseInt(cursor.getString(7)));
+                recipe.set_ingredientList(cursor.getString(5));
+                recipe.set_directions(cursor.getString(6));
+                recipe.set_comments(cursor.getString(7));
                 recipe.set_prepTime(Integer.parseInt(cursor.getString(8)));
                 recipe.set_cookTime(Integer.parseInt(cursor.getString(9)));
 
@@ -181,5 +183,35 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return recipeList;
     }
 
+    /*******************************
+        UPDATING A SINGLE RECIPE
+     ******************************/
 
+    public int updateRecipe(RecipeDB recipe){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TITLE, recipe.get_title()); // Recipe Title
+        values.put(KEY_IMAGE, recipe.get_image()); // Recipe Image
+        values.put(KEY_CATEGORY, recipe.get_category()); // Recipe category
+        values.put(KEY_SERVES, recipe.get_serves()); // Recipe Serves
+        values.put(KEY_INGREDIENTS, recipe.get_ingredientList());
+        values.put(KEY_DIRECTIONS, recipe.get_directions());
+        values.put(KEY_COMMENTS, recipe.get_prepTime());
+        values.put(KEY_PREP_TIME, recipe.get_prepTime());
+        values.put(KEY_COOK_TIME, recipe.get_cookTime());
+
+        //updating row
+        return db.update(TABLE_RECIPE, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(recipe.get_id())});
+    }
+
+    /*******************************
+        DELETING A SINGLE RECIPE
+     ******************************/
+    public void deleteRecipe(RecipeDB recipe){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_RECIPE, KEY_ID + " = ?", new String[] { String.valueOf(recipe.get_id())});
+        db.close();
+    }
 }

@@ -13,5 +13,9 @@
     <string name="recipeIngredients">Ingredients</string>
     <string name="recipeDirections">Recipe Directions</string>
     <string name="recipeComments">Recipe Comments</string>
+    <string name="title_activity_view_recipe">View Recipe</string>
+
+    <string name="button_viewRecipe">View Recipe</string>
+    <string name="inputRecipe">View Recipe</string>
 
 </resources>

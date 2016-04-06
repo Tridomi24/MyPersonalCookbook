@@ -1,8 +1,11 @@
 package com.example.tmitchell.mypersonalcookbook;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         recipeDirections.setText(db.getRecipe(1).get_directions());
         recipeComments.setText(db.getRecipe(1).get_comments());
 
-
     }
+
+
 }

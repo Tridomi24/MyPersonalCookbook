@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/addRecipe_ScrollView"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-    android:paddingTop="60dp"
-    >
+    android:id="@+id/addRecipe_ScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="60dp">
 
 <LinearLayout
     android:id="@+id/addRecipe_LinearLayout"
@@ -52,9 +49,11 @@ android:layout_height="match_parent"
         android:layout_gravity="start"/>
     <EditText
         android:id="@+id/addRecipe_serves_in"
-        android:layout_width="300dp"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:inputType="number"
+        android:text="1" />
 
     <Button
         android:id="@+id/addRecipe_submit_button"

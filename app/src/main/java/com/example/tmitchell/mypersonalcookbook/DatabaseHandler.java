@@ -7,22 +7,16 @@ package com.example.tmitchell.mypersonalcookbook;
  */
 
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.sql.Blob;
-import java.util.ArrayList;
-import java.util.AbstractList;
-import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -192,7 +186,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<RecipeDB> recipeList = new ArrayList<RecipeDB>();
 
         //SELECT all Query
-        String selectQuery = "SELECT " + KEY_ID + ",  " + KEY_TITLE +  " FROM " + TABLE_RECIPE;
+        String selectQuery = "SELECT " + KEY_ID + ",  " + KEY_TITLE + ", " + KEY_CATEGORY +
+                " FROM " + TABLE_RECIPE;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

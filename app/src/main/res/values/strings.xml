@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">MyPersonalCookbook</string>
+    <string name="recipeID">ID</string>
+    <string name="recipeTitle">Title</string>
+    <string name="recipeCategory">Category</string>
+    <string name="recipeCategory_label">Category</string>
+    <string name="recipeID_label">ID:</string>
+    <string name="recipeTitle_label">Title</string>
+    <string name="recipeServes_label">Serves:</string>
+    <string name="recipeIngredientsLabel">Ingredients:</string>
+    <string name="recipeDirections_label">Directions:</string>
+    <string name="recipeServes">serves</string>
+    <string name="recipeIngredients">Ingredients</string>
+    <string name="recipeDirections">Recipe Directions</string>
+    <string name="recipeComments">Recipe Comments</string>
+    <string name="title_activity_view_recipe">View Recipe</string>
+
+    <string name="button_viewRecipe">View Recipe</string>
+    <string name="inputRecipe">View Recipe</string>
+    <string name="recipeCount">Total Recipes</string>
+    <string name="title_activity_add_recipe">Add Recipe</string>
+    <string name="noEntries">It looks like you don\'t have any recipes currently saved.</string>
+
+</resources>

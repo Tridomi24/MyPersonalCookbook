@@ -32,7 +32,7 @@ public class ViewRecipe extends AppCompatActivity {
 
 
         TextView title = (TextView) findViewById(R.id.title_view);
-        TextView categoty = (TextView) findViewById(R.id.category_view);
+        TextView category = (TextView) findViewById(R.id.category_view);
 
         Bundle extra = getIntent().getExtras();
         if (extra != null) {
@@ -41,6 +41,8 @@ public class ViewRecipe extends AppCompatActivity {
             r = dh.getRecipe(id);
 
             title.setText(r.get_title());
+            category.setText(r.get_category());
+
 
         } else {
 

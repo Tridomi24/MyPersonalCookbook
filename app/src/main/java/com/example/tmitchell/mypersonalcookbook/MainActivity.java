@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DatabaseHandler db =  new DatabaseHandler(this);
+        DatabaseHandler db = new DatabaseHandler(this);
 
         /*****************
          * CRUD Operations
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<RecipeDB> recipeStore = new ArrayList<RecipeDB>();
 
-        recipeStore = db.getAll_ID_Title();
+        recipeStore = db.getAllRecipes();
         ListAdapter adapter = new ListAdapter(this, R.layout.itemlistrow, recipeStore);
 
         assert recipeList != null;
@@ -45,31 +46,29 @@ public class MainActivity extends AppCompatActivity {
         assert recipeCount != null;
         recipeCount.setText("Total Recipes: " + count);
 
-        //Creates a new text view if the database is empty
-        if (count == 0){
-            final TextView noEntries = new TextView(this);
 
-            noEntries.setText(R.string.noEntries);
+            //Creates a new text view if the database is empty
+            if (count == 0) {
+                final TextView noEntries = new TextView(this);
 
-            final RelativeLayout.LayoutParams params =
-                    new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT);
-            params.addRule(RelativeLayout.BELOW, R.id.numberOfRecipes);
-            noEntries.setTextSize(20);
-            noEntries.setLayoutParams(params);
+                noEntries.setText(R.string.noEntries);
 
-            assert rl != null;
-            rl.addView(noEntries, params);
+                final RelativeLayout.LayoutParams params =
+                        new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                RelativeLayout.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.BELOW, R.id.numberOfRecipes);
+                noEntries.setTextSize(20);
+                noEntries.setLayoutParams(params);
+
+                assert rl != null;
+                rl.addView(noEntries, params);
+            }
+
         }
 
 
-
-
-
-    }
-
     /*Start the add Recipe Activity*/
-    public void addRecipe(View view){
+    public void addRecipe(View view) {
         Intent intent = new Intent(this, AddRecipe.class);
         startActivity(intent);
     }

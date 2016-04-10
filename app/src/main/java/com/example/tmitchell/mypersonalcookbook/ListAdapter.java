@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class ListAdapter extends ArrayAdapter<RecipeDB> {
 
+
     public ListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
@@ -35,25 +36,23 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
             v = vi.inflate(R.layout.itemlistrow, null);
         }
 
-        RecipeDB p = getItem(position);
+        RecipeDB db = getItem(position);
 
-
-
-        if (p != null) {
+        if (db != null) {
             TextView rID = (TextView) v.findViewById(R.id.recipeID_lv);
             TextView rTitle = (TextView) v.findViewById(R.id.recipeTitle_lv);
             TextView rCat = (TextView) v.findViewById(R.id.recipeCategory_lv);
 
             if (rID != null){
-                rID.setText(Integer.toString(p.get_id()));
+                rID.setText(Integer.toString(db.get_id()));
             }
 
             if (rTitle != null) {
-                rTitle.setText(p.get_title());
+                rTitle.setText(db.get_title());
             }
 
             if (rCat != null) {
-                rCat.setText(p.get_category());
+                rCat.setText(db.get_category());
             }
 
         }

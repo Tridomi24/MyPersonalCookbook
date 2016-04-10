@@ -58,6 +58,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+
     /****************************
      * Creating the Tables
      ****************************/
@@ -98,10 +99,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         //converts Ingredients ArrayList to a JSON that can be stored
         String ingredients = new Gson().toJson(recipe.get_ingredientList());
-
-        //converts image to array that can be stored
-
-
 
         ContentValues values = new ContentValues();
         values.put(KEY_TITLE, recipe.get_title()); // Recipe Title
@@ -148,7 +145,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<RecipeDB> recipeList = new ArrayList<RecipeDB>();
 
         //SELECT all Query
-        String selectQuery = "SELECT * FROM " + TABLE_RECIPE;
+        String selectQuery = "SELECT * FROM " + TABLE_RECIPE + " ORDER BY " + KEY_CATEGORY;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -177,36 +174,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return recipeList;
     }
-
-    /**************************
-     GET ALL ID's AND TITLES
-     *************************/
-    //Get all ID's and Titles of recipes
-    public List<RecipeDB> getAll_ID_Title() {
-        List<RecipeDB> recipeList = new ArrayList<RecipeDB>();
-
-        //SELECT all Query
-        String selectQuery = "SELECT " + KEY_ID + ",  " + KEY_TITLE + ", " + KEY_CATEGORY +
-                " FROM " + TABLE_RECIPE;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        //loop through all rows and add to list
-        if (cursor.moveToFirst()) {
-            do {
-                RecipeDB recipe = new RecipeDB();
-
-                recipe.set_id(Integer.parseInt(cursor.getString(0)));
-                recipe.set_title((cursor.getString(1)));
-
-                //Add to the recipe List
-                recipeList.add(recipe);
-            } while (cursor.moveToNext());
-        }
-        return recipeList;
-    }
-
 
 
     /*******************************

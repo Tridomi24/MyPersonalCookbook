@@ -45,18 +45,20 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 /*************************************************
-                 Sets the variables from text views on click
+                    Sets the variables from text views on click
                  ************************************************/
                 //STRINGS
                 String title = title_in.getText().toString();
+                String imgPath = "";
                 String category = category_in.getText().toString();
                 String servesStr = serves_in.getText().toString();
+
 
                 //INTS
                 final int servesNo = Integer.parseInt(servesStr);
 
 
-                db.addRecipe(new RecipeDB(1, title, null, category, servesNo,
+                db.addRecipe(new RecipeDB(1, title, imgPath, category, servesNo,
                         null, null, null, 0, 0));
 
                 startActivity(new Intent(AddRecipe.this,

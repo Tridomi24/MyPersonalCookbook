@@ -37,17 +37,25 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
 
         RecipeDB p = getItem(position);
 
+
+
         if (p != null) {
-            TextView tt2 = (TextView) v.findViewById(R.id.recipeTitle_lv);
-            TextView tt3 = (TextView) v.findViewById(R.id.recipeCategory_lv);
+            TextView rID = (TextView) v.findViewById(R.id.recipeID_lv);
+            TextView rTitle = (TextView) v.findViewById(R.id.recipeTitle_lv);
+            TextView rCat = (TextView) v.findViewById(R.id.recipeCategory_lv);
 
-            if (tt2 != null) {
-                tt2.setText(p.get_title());
+            if (rID != null){
+                rID.setText(Integer.toString(p.get_id()));
             }
 
-            if (tt3 != null) {
-                tt3.setText(p.get_category());
+            if (rTitle != null) {
+                rTitle.setText(p.get_title());
             }
+
+            if (rCat != null) {
+                rCat.setText(p.get_category());
+            }
+
         }
 
         return v;

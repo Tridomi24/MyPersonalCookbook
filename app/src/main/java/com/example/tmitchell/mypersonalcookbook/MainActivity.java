@@ -1,5 +1,6 @@
 package com.example.tmitchell.mypersonalcookbook;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,16 +30,19 @@ public class MainActivity extends AppCompatActivity {
         TextView recipeCount = (TextView) findViewById(R.id.numberOfRecipes);
         ListView recipeList = (ListView) findViewById(R.id.storedRecipesList);
 
-
         List<RecipeDB> recipeStore = new ArrayList<RecipeDB>();
 
         recipeStore = db.getAll_ID_Title();
         ListAdapter adapter = new ListAdapter(this, R.layout.itemlistrow, recipeStore);
-        recipeList.setAdapter(adapter);
 
+        assert recipeList != null;
+        recipeList.setAdapter(adapter);
+        recipeList.setOnItemClickListener(new ListClickHandler());
 
         int count;
         count = db.recipeCount();
+
+        assert recipeCount != null;
         recipeCount.setText("Total Recipes: " + count);
 
         //Creates a new text view if the database is empty
@@ -54,8 +58,11 @@ public class MainActivity extends AppCompatActivity {
             noEntries.setTextSize(20);
             noEntries.setLayoutParams(params);
 
+            assert rl != null;
             rl.addView(noEntries, params);
         }
+
+
 
 
 

@@ -19,6 +19,7 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final DatabaseHandler db =  new DatabaseHandler(this);
 
         /*********************************************

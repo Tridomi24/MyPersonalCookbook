@@ -1,5 +1,17 @@
 <resources>
+    <!--Strings Found Everywhere-->
     <string name="app_name">MyPersonalCookbook</string>
+
+   <!-- Strings found on Main Activity-->
+    <string name="title_activity_add_recipe">Add Recipe</string>
+    <string name="recipeCount">Total Recipes</string>
+
+    <string name="noEntries">It looks like you don\'t have any recipes currently saved.</string>
+
+    <!--Strings found on AddRecipe-->
+
+    <!--Strings Found in ViewRecipe-->
+  <string name="title_activity_view_recipe">View Recipe</string>
     <string name="recipeID">ID</string>
     <string name="recipeTitle">Title</string>
     <string name="recipeCategory">Category</string>
@@ -13,12 +25,10 @@
     <string name="recipeIngredients">Ingredients</string>
     <string name="recipeDirections">Recipe Directions</string>
     <string name="recipeComments">Recipe Comments</string>
-    <string name="title_activity_view_recipe">View Recipe</string>
+
 
     <string name="button_viewRecipe">View Recipe</string>
     <string name="inputRecipe">View Recipe</string>
-    <string name="recipeCount">Total Recipes</string>
-    <string name="title_activity_add_recipe">Add Recipe</string>
-    <string name="noEntries">It looks like you don\'t have any recipes currently saved.</string>
+
 
 </resources>

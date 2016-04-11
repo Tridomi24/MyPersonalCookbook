@@ -3,7 +3,7 @@
     android:id="@+id/addRecipe_ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="60dp">
+    android:layout_marginTop="60dp">
 
 <LinearLayout
     android:id="@+id/addRecipe_LinearLayout"
@@ -16,7 +16,7 @@
     <!--RECIPE TITLE-->
     <TextView
         android:id="@+id/addRecipe_title"
-        android:paddingTop="20dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Title:"
@@ -31,7 +31,7 @@
     <!--RECIPE CATEGORY-->
     <TextView
         android:id="@+id/addRecipe_category"
-        android:paddingTop="20dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Category:"
@@ -45,7 +45,7 @@
 
     <!--RECIPE SERVES-->
     <TextView
-        android:paddingTop="20dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Serves:"
@@ -61,7 +61,7 @@
 
     <!--RECIPE INGREDIENTS-->
     <TextView
-        android:paddingTop="20dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ingredients:"
@@ -77,7 +77,7 @@
 
     <!--RECIPE DIRECTIONS-->
     <TextView
-        android:paddingTop="20dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Directions:"
@@ -93,7 +93,7 @@
 
     <!--RECIPE COMMENTS-->
     <TextView
-        android:paddingTop="20dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Comments:"
@@ -113,7 +113,7 @@
         <!--RECIPE PREP-TIME-->
         <TextView
             android:id="@+id/addRecipe_preptime_label"
-            android:paddingTop="20dp"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Prep Time:"
@@ -131,7 +131,7 @@
             android:layout_centerHorizontal="true" />
         <TextView
             android:id="@+id/addRecipe_mins_pt"
-            android:paddingTop="20dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="mins"
@@ -159,7 +159,7 @@
             android:layout_alignStart="@+id/addRecipe_preptime_in" />
         <TextView
             android:id="@+id/addRecipe_mins_ct"
-            android:paddingTop="20dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="mins"
@@ -170,7 +170,7 @@
     </RelativeLayout>
     <Button
         android:id="@+id/addRecipe_submit_button"
-        android:paddingTop="20dp"
+        android:layout_margin="20dp"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Save Recipe"
@@ -178,10 +178,10 @@
         android:layout_marginBottom="10dp"
         android:layout_weight="1.61"
         android:onClick="submitRecipe"
-        android:layout_gravity="center"
         android:textSize="20sp"
         android:background="@color/colorPrimary"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:layout_gravity="center" />
 
 </LinearLayout>
 

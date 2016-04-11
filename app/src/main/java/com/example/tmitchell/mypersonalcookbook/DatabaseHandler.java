@@ -7,22 +7,16 @@ package com.example.tmitchell.mypersonalcookbook;
  */
 
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.sql.Blob;
-import java.util.ArrayList;
-import java.util.AbstractList;
-import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -64,6 +58,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+
     /****************************
      * Creating the Tables
      ****************************/
@@ -91,6 +86,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
     /**
      * All CRUD(Create, Read, Update, Delete) Operations
      */
@@ -103,10 +99,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         //converts Ingredients ArrayList to a JSON that can be stored
         String ingredients = new Gson().toJson(recipe.get_ingredientList());
-
-        //converts image to array that can be stored
-
-
 
         ContentValues values = new ContentValues();
         values.put(KEY_TITLE, recipe.get_title()); // Recipe Title
@@ -153,7 +145,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<RecipeDB> recipeList = new ArrayList<RecipeDB>();
 
         //SELECT all Query
-        String selectQuery = "SELECT * FROM " + TABLE_RECIPE;
+        String selectQuery = "SELECT * FROM " + TABLE_RECIPE + " ORDER BY " + KEY_CATEGORY;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -183,6 +175,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return recipeList;
     }
 
+
     /*******************************
         UPDATING A SINGLE RECIPE
      ******************************/
@@ -211,7 +204,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      ******************************/
     public void deleteRecipe(RecipeDB recipe){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_RECIPE, KEY_ID + " = ?", new String[] { String.valueOf(recipe.get_id())});
+        db.delete(TABLE_RECIPE, KEY_ID + " = ?", new String[]{String.valueOf(recipe.get_id())});
         db.close();
+    }
+
+    public int recipeCount(){
+        String countQuery = "SELECT id FROM " + TABLE_RECIPE;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(countQuery, null);
+
+        c.moveToFirst();
+        int count = c.getCount();
+        c.close();
+
+        return count;
     }
 }

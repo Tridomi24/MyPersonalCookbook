@@ -16,7 +16,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".viewRecipe"
+            android:name=".AddRecipe"
+            android:label="@string/title_activity_add_recipe"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tmitchell.mypersonalcookbook.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ViewRecipe"
             android:label="@string/title_activity_view_recipe"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

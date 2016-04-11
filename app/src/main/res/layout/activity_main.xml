@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
@@ -26,3 +27,65 @@
         android:onClick="viewRecipe" />
 
 </RelativeLayout>
+=======
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mainLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.tmitchell.mypersonalcookbook.MainActivity"
+        android:gravity="center_vertical|center|center_horizontal"
+        android:weightSum="1">
+
+        <TextView android:id="@+id/welcome_main"
+
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Welcome"
+            android:gravity="left"
+            android:textSize="30sp"
+            />
+
+        <Button
+            android:id="@+id/addRecipe_Button"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:text="Add Recipe"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1.61"
+
+            android:layout_centerHorizontal="true"
+            android:onClick="addRecipe"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_below="@id/welcome_main"
+            />
+
+        <TextView android:id="@+id/numberOfRecipes"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/recipeCount"
+            android:gravity="left"
+            android:textSize="30sp"
+            android:layout_below="@id/addRecipe_Button"
+            />
+
+        <ListView
+            android:id="@+id/storedRecipesList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/numberOfRecipes"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"/>
+
+
+</RelativeLayout>
+
+>>>>>>> origin/master

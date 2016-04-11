@@ -1,14 +1,17 @@
 package com.example.tmitchell.mypersonalcookbook;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,35 +21,67 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DatabaseHandler db =  new DatabaseHandler(this);
+        DatabaseHandler db = new DatabaseHandler(this);
 
-        /**
+        /*****************
          * CRUD Operations
-         * */
-        //insert recipe
-        Log.d("Insert: ", "Inserting ...");
-        db.addRecipe(new RecipeDB(1, "Salad", "filepath", "main", 2, "tomatoes, feta, lettuce",
-                "Chop lettuce and tomatoes, add to bowl", "Dress with olive oil", 5, 0));
-        db.addRecipe(new RecipeDB(2,"Cous-Cous", "filepath", "main", 1, "Cous-Cous Packet",
-                "Put cous-cous in bowl, add boiling water", "season to taste", 0,5));
-
-
+         ****************/
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.mainLayout);
-        TextView recipeID = (TextView) findViewById(R.id.recipeID);
-        TextView recipeTitle = (TextView) findViewById(R.id.recipeTitle);
-        TextView recipeCategory = (TextView) findViewById(R.id.recipeCategory);
-        TextView recipeServes = (TextView) findViewById(R.id.recipeServes);
-        TextView recipeIngredients = (TextView) findViewById(R.id.recipeIngredients);
-        TextView recipeDirections = (TextView) findViewById(R.id.recipeDirections);
-        TextView recipeComments = (TextView) findViewById(R.id.recipeComments);
+        Button addRecipe_btn = (Button) findViewById(R.id.addRecipe_Button);
+        TextView recipeCount = (TextView) findViewById(R.id.numberOfRecipes);
+        ListView recipeList = (ListView) findViewById(R.id.storedRecipesList);
 
-        recipeID.setText(Integer.toString(db.getRecipe(1).get_id()));
-        recipeTitle.setText(db.getRecipe(1).get_title());
-        recipeCategory.setText(db.getRecipe(1).get_category());
-        recipeServes.setText(Integer.toString(db.getRecipe(1).get_serves()));
-        recipeIngredients.setText(db.getRecipe(1).get_ingredientList());
-        recipeDirections.setText(db.getRecipe(1).get_directions());
-        recipeComments.setText(db.getRecipe(1).get_comments());
+        List<RecipeDB> recipeStore = new ArrayList<RecipeDB>();
+
+        recipeStore = db.getAllRecipes();
+        ListAdapter adapter = new ListAdapter(this, R.layout.itemlistrow, recipeStore);
+
+        assert recipeList != null;
+        recipeList.setAdapter(adapter);
+        recipeList.setOnItemClickListener(new ListClickHandler());
+
+        int count;
+        count = db.recipeCount();
+
+        assert recipeCount != null;
+        recipeCount.setText("Total Recipes: " + count);
+
+
+            //Creates a new text view if the database is empty
+            if (count == 0) {
+                final TextView noEntries = new TextView(this);
+
+                noEntries.setText(R.string.noEntries);
+
+                final RelativeLayout.LayoutParams params =
+                        new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                RelativeLayout.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.BELOW, R.id.numberOfRecipes);
+                noEntries.setTextSize(20);
+                noEntries.setLayoutParams(params);
+
+                assert rl != null;
+                rl.addView(noEntries, params);
+            }
+
+        }
+
+
+    /*Start the add Recipe Activity*/
+    public void addRecipe(View view) {
+        Intent intent = new Intent(this, AddRecipe.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
 

@@ -53,10 +53,6 @@ public class RecipeDB {
         this._cookTime = cookTime;
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
     /**************************
         GET AND SET METHODS
      **************************/

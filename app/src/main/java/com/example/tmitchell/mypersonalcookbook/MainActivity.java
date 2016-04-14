@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,8 +35,50 @@ public class MainActivity extends AppCompatActivity {
 
         List<RecipeDB> recipeStore = new ArrayList<RecipeDB>();
 
+
         recipeStore = db.getAllRecipes();
         ListAdapter adapter = new ListAdapter(this, R.layout.itemlistrow, recipeStore);
+        System.out.println("TEST: " + recipeStore);
+        System.out.println("TEST: " + recipeStore.get(0).get_category());
+
+
+        //ArrayLists to hold the recipes of each category
+        List<RecipeDB> mainsList = new ArrayList<>();
+        List<RecipeDB> starterList = new ArrayList<>();
+        List<RecipeDB> dessertList = new ArrayList<>();
+        List<RecipeDB> snackList = new ArrayList<>();
+
+
+
+        //Loops through the recipeStore array and breaks it
+        //into the categories.
+        for (int i = 0; i < recipeStore.size(); i++) {
+
+            switch (recipeStore.get(i).get_category()) {
+
+                case "Main":
+                    mainsList.add(recipeStore.get(i));
+                    break;
+                case "Starter":
+                    starterList.add(recipeStore.get(i));
+                    break;
+                case "Dessert":
+                    dessertList.add(recipeStore.get(i));
+                    break;
+                case "Snack":
+                    snackList.add(recipeStore.get(i));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        //TESTING
+        for (int i = 0; i > mainsList.size(); i++) {
+            System.out.println("TEST: ArraySize " + mainsList.size());
+            System.out.println("TEST: " + mainsList.get(i).get_category());
+        }
+
 
         assert recipeList != null;
         recipeList.setAdapter(adapter);
@@ -47,24 +91,24 @@ public class MainActivity extends AppCompatActivity {
         recipeCount.setText("Total Recipes: " + count);
 
 
-            //Creates a new text view if the database is empty
-            if (count == 0) {
-                final TextView noEntries = new TextView(this);
+        //Creates a new text view if the database is empty
+        if (count == 0) {
+            final TextView noEntries = new TextView(this);
 
-                noEntries.setText(R.string.noEntries);
+            noEntries.setText(R.string.noEntries);
 
-                final RelativeLayout.LayoutParams params =
-                        new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-                                RelativeLayout.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.BELOW, R.id.numberOfRecipes);
-                noEntries.setTextSize(20);
-                noEntries.setLayoutParams(params);
+            final RelativeLayout.LayoutParams params =
+                    new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT);
+            params.addRule(RelativeLayout.BELOW, R.id.numberOfRecipes);
+            noEntries.setTextSize(20);
+            noEntries.setLayoutParams(params);
 
-                assert rl != null;
-                rl.addView(noEntries, params);
-            }
-
+            assert rl != null;
+            rl.addView(noEntries, params);
         }
+
+    }
 
 
     /*Start the add Recipe Activity*/

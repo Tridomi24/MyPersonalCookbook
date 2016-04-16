@@ -44,6 +44,7 @@
         android:layout_width="match_parent"
         android:text="@string/recipeCount"
         android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:textSize="30sp"
         android:layout_below="@id/addRecipe_Button"
         />
@@ -53,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/numberOfRecipes"
+        android:layout_marginTop="20dp"
         android:clickable="true"
         android:descendantFocusability="blocksDescendants"/>
 

@@ -76,6 +76,12 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
                                            ************************/
                                           EditText title_in = (EditText) findViewById(R.id.addRecipe_title_in);
                                           EditText serves_in = (EditText) findViewById(R.id.addRecipe_serves_in);
+                                          EditText ingredients_in = (EditText) findViewById(R.id.addRecipe_ingredientList_in);
+                                          EditText directions_in = (EditText) findViewById(R.id.addRecipe_Directions_in);
+                                          EditText comments_in = (EditText) findViewById(R.id.addRecipe_Comments_in);
+                                          EditText prep_in = (EditText) findViewById(R.id.addRecipe_preptime_in);
+                                          EditText cook_in = (EditText) findViewById(R.id.addRecipe_cooktime_in);
+
 
 
                                           @Override
@@ -88,12 +94,21 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
                                               String imgPath = "";
                                               String servesStr = serves_in.getText().toString();
                                               String catChoice = category.getSelectedItem().toString();
+                                              String ingredients = ingredients_in.getText().toString();
+                                              String directions = directions_in.getText().toString();
+                                              String comments = comments_in.getText().toString();
+                                              String prepStr = prep_in.getText().toString();
+                                              String cookStr = cook_in.getText().toString();
+
+                                              System.out.println("TEST IN: " + serves_in);
 
                                               //INTS
                                               final int servesNo = Integer.parseInt(servesStr);
+                                              final int prepNo = Integer.parseInt(prepStr);
+                                              final int cookNo = Integer.parseInt(cookStr);
 
                                               db.addRecipe(new RecipeDB(0, title, imgPath, catChoice, servesNo,
-                                                      "blah", "habba", "galarchi", 0, 0));
+                                                      ingredients, directions, comments, prepNo, cookNo));
 
                                               startActivity(new Intent(AddRecipe.this,
                                                       MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));

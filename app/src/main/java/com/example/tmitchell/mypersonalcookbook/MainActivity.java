@@ -1,10 +1,8 @@
 package com.example.tmitchell.mypersonalcookbook;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -13,7 +11,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,11 +33,9 @@ public class MainActivity extends AppCompatActivity {
         List<RecipeDB> recipeStore = new ArrayList<RecipeDB>();
 
 
+
         recipeStore = db.getAllRecipes();
         ListAdapter adapter = new ListAdapter(this, R.layout.itemlistrow, recipeStore);
-        System.out.println("TEST: " + recipeStore);
-        System.out.println("TEST: " + recipeStore.get(0).get_category());
-
 
         //ArrayLists to hold the recipes of each category
         List<RecipeDB> mainsList = new ArrayList<>();
@@ -83,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         assert recipeList != null;
         recipeList.setAdapter(adapter);
         recipeList.setOnItemClickListener(new ListClickHandler());
+
 
         int count;
         count = db.recipeCount();

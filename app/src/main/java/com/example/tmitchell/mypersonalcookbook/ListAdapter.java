@@ -15,7 +15,15 @@ import java.util.List;
  * [ACCESSED ON 08/04/16]
  */
 public class ListAdapter extends ArrayAdapter<RecipeDB> {
+    int mainCount = 0;
+    int starterCount = 0;
+    int dessertCount = 0;
+    int snackCount = 0;
 
+    String firstDessert = null;
+    String firstMain = null;
+    String firstSnack = null;
+    String firstStarter = null;
 
     public ListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
@@ -27,6 +35,7 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
 
         View v = convertView;
 
@@ -41,9 +50,9 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
         if (db != null) {
             TextView rID = (TextView) v.findViewById(R.id.recipeID_lv);
             TextView rTitle = (TextView) v.findViewById(R.id.recipeTitle_lv);
-            TextView rCat = (TextView) v.findViewById(R.id.recipeCategory_lv);
+            TextView rCat = (TextView) v.findViewById(R.id.recipeCategory_header);
 
-            if (rID != null){
+            if (rID != null) {
                 rID.setText(Integer.toString(db.get_id()));
             }
 
@@ -51,8 +60,69 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
                 rTitle.setText(db.get_title());
             }
 
+            //Makes the headers invisible if there are more than one that
+            //category present in the list.
             if (rCat != null) {
+
+                //sets the category textview based on the entry
                 rCat.setText(db.get_category());
+
+                //Desserts will set the header to visible for the first row
+                if (rCat.getText().equals("Dessert")) {
+
+                    if (dessertCount == 0 || rID.getText().equals(firstDessert)) {
+                        rCat.setVisibility(View.VISIBLE);
+
+                        firstDessert = (String) rID.getText();
+
+                        System.out.println("TEST fd: " + firstDessert);
+                        dessertCount = +1;
+
+                    } else if (dessertCount >= 1 && !rID.getText().equals(firstDessert)) {
+                        rCat.setVisibility(View.GONE);
+                    }
+                }
+
+                //Mains will set the header to visible for the first row
+                if (rCat.getText().equals("Main")) {
+                    if (mainCount == 0 || rID.getText().equals(firstMain)) {
+                        rCat.setVisibility(View.VISIBLE);
+
+                        firstMain = (String) rID.getText();
+
+                        mainCount = +1;
+                    } else if (mainCount >= 1 && !rID.getText().equals(firstMain)) {
+                        rCat.setVisibility(View.GONE);
+                    }
+                }
+                //Snack will set the header to visible for the first row
+                if (rCat.getText().equals("Snack")) {
+
+                    if (snackCount == 0 || rID.getText().equals(firstSnack)) {
+                        rCat.setVisibility(View.VISIBLE);
+
+                        firstSnack = (String) rID.getText();
+
+                        snackCount = +1;
+                    } else if (snackCount >= 1 && !rID.getText().equals(firstSnack)) {
+                        rCat.setVisibility(View.GONE);
+                    }
+                }
+
+                //Starters will set the header to visible for the first row
+                if (rCat.getText().equals("Starter")) {
+
+                    if (starterCount == 0 || rID.getText().equals(firstStarter)) {
+                        rCat.setVisibility(View.VISIBLE);
+
+                        firstStarter = (String) rID.getText();
+
+                        starterCount = +1;
+                    } else if (starterCount >= 1 && !rID.getText().equals(firstStarter)) {
+                        rCat.setVisibility(View.GONE);
+                    }
+                }
+
             }
 
         }

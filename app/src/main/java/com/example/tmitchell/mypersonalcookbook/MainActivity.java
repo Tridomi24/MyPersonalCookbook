@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         List<RecipeDB> dessertList = new ArrayList<>();
         List<RecipeDB> snackList = new ArrayList<>();
 
-
-
         //Loops through the recipeStore array and breaks it
         //into the categories.
         for (int i = 0; i < recipeStore.size(); i++) {

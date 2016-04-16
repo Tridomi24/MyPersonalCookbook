@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:text="@string/recipeCount"
-        android:gravity="left"
+        android:gravity="center_horizontal"
         android:textSize="30sp"
         android:layout_below="@id/addRecipe_Button"
         />

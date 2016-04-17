@@ -75,7 +75,6 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
 
                         firstDessert = (String) rID.getText();
 
-                        System.out.println("TEST fd: " + firstDessert);
                         dessertCount = +1;
 
                     } else if (dessertCount >= 1 && !rID.getText().equals(firstDessert)) {

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/addRecipe_ScrollView"
+    android:id="@+id/editRecipe_ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -11,17 +10,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-
     tools:context="com.example.tmitchell.mypersonalcookbook.EditRecipe"
     tools:showIn="@layout/activity_edit_recipe">>
+
 
     <LinearLayout
         android:id="@+id/editRecipe_LinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <!--RECIPE TITLE-->
         <TextView
@@ -86,7 +83,9 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:inputType="textLongMessage" />
+            android:inputType="textMultiLine"
+            android:maxLines="15"
+            android:lines="1" />
 
         <!--RECIPE DIRECTIONS-->
         <TextView
@@ -102,7 +101,9 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:inputType="textLongMessage" />
+            android:inputType="textMultiLine"
+            android:maxLines="15"
+            android:lines="1" />
 
         <!--RECIPE COMMENTS-->
         <TextView
@@ -118,7 +119,9 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:inputType="textLongMessage" />
+            android:inputType="textMultiLine"
+            android:maxLines="15"
+            android:lines="1" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -187,7 +190,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/addRecipe_submit_button"
+            android:id="@+id/editRecipe_submit_button"
             android:layout_margin="20dp"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -195,7 +198,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1.61"
-            android:onClick="submitRecipe"
+            android:onClick="editRecipe"
             android:textSize="20sp"
             android:background="@color/colorPrimary"
             android:textColor="@color/white"

@@ -72,7 +72,10 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:inputType="textLongMessage"
+        android:inputType="textMultiLine"
+        android:maxLines="15"
+        android:lines="1"
+
         />
 
     <!--RECIPE DIRECTIONS-->
@@ -88,8 +91,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:inputType="textLongMessage"
-        />
+        android:inputType="textMultiLine"
+        android:maxLines="15"
+        android:lines="1" />
 
     <!--RECIPE COMMENTS-->
     <TextView
@@ -104,8 +108,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:inputType="textLongMessage"
-        />
+        android:inputType="textMultiLine"
+        android:maxLines="15"
+        android:lines="1" />
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -151,7 +151,6 @@ public class ViewRecipe extends AppCompatActivity {
          * Starts the edit recipe activity and passes the
          * recipe ID with the intent.
          */
-
         Bundle extra = getIntent().getExtras();
         int id = extra.getInt("id");
         Intent intent = new Intent(view.getContext(), EditRecipe.class);

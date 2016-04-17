@@ -66,13 +66,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        //TESTING
-        for (int i = 0; i > mainsList.size(); i++) {
-            System.out.println("TEST: ArraySize " + mainsList.size());
-            System.out.println("TEST: " + mainsList.get(i).get_category());
-        }
-
-
         assert recipeList != null;
         recipeList.setAdapter(adapter);
         recipeList.setOnItemClickListener(new ListClickHandler());

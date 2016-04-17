@@ -69,8 +69,7 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
         });
 
         assert saveButton != null;
-        saveButton.setOnClickListener(new View.OnClickListener()
-                                      {
+        saveButton.setOnClickListener(new View.OnClickListener() {
                                           /************************
                                            * SETS THE TEXT VIEWS
                                            ************************/
@@ -81,7 +80,6 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
                                           EditText comments_in = (EditText) findViewById(R.id.addRecipe_Comments_in);
                                           EditText prep_in = (EditText) findViewById(R.id.addRecipe_preptime_in);
                                           EditText cook_in = (EditText) findViewById(R.id.addRecipe_cooktime_in);
-
 
 
                                           @Override
@@ -99,8 +97,6 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
                                               String comments = comments_in.getText().toString();
                                               String prepStr = prep_in.getText().toString();
                                               String cookStr = cook_in.getText().toString();
-
-                                              System.out.println("TEST IN: " + serves_in);
 
                                               //INTS
                                               final int servesNo = Integer.parseInt(servesStr);

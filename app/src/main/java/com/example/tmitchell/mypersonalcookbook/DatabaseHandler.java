@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * Created by Tmitchell on 04/04/2016.
+ * PURPOSE: Contains all of the methods for interacting with the database
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -105,11 +106,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_IMAGE, recipe.get_image()); // Recipe Image
         values.put(KEY_CATEGORY, recipe.get_category()); // Recipe category
         values.put(KEY_SERVES, recipe.get_serves()); // Recipe Serves
-        values.put(KEY_INGREDIENTS, ingredients);
-        values.put(KEY_DIRECTIONS, recipe.get_directions());
-        values.put(KEY_COMMENTS, recipe.get_prepTime());
-        values.put(KEY_PREP_TIME, recipe.get_prepTime());
-        values.put(KEY_COOK_TIME, recipe.get_cookTime());
+        values.put(KEY_INGREDIENTS, ingredients); //Recipe Ingredients List
+        values.put(KEY_DIRECTIONS, recipe.get_directions()); //Recipe Directions
+        values.put(KEY_COMMENTS, recipe.get_comments()); //Recipe Comments
+        values.put(KEY_PREP_TIME, recipe.get_prepTime()); //Recipe Prep Time
+        values.put(KEY_COOK_TIME, recipe.get_cookTime()); //Recipe Cook TIme
 
         // Inserting Row
         db.insert(TABLE_RECIPE, null, values);
@@ -126,15 +127,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         KEY_CATEGORY, KEY_SERVES, KEY_INGREDIENTS,
                         KEY_DIRECTIONS, KEY_COMMENTS, KEY_PREP_TIME, KEY_COOK_TIME}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
+
         if (cursor != null) {
             cursor.moveToFirst();
         }
 
-        RecipeDB recipe = new RecipeDB(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
+        assert cursor != null;
+
+        return new RecipeDB(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
                 cursor.getString(2), cursor.getString(3), cursor.getInt(4), cursor.getString(5),
                 cursor.getString(6), cursor.getString(7), cursor.getInt(8), cursor.getInt(9));
-
-        return recipe;
     }
 
     /*********************
@@ -142,10 +144,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      ********************/
     //Get all stored recipes
     public List<RecipeDB> getAllRecipes() {
-        List<RecipeDB> recipeList = new ArrayList<RecipeDB>();
+        List<RecipeDB> recipeList = new ArrayList<>();
 
         //SELECT all Query
-        String selectQuery = "SELECT * FROM " + TABLE_RECIPE + " ORDER BY " + KEY_CATEGORY;
+        String selectQuery = "SELECT * FROM " + TABLE_RECIPE + " ORDER BY " + KEY_CATEGORY + " DESC";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

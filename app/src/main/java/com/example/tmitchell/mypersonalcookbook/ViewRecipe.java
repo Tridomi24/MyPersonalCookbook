@@ -1,8 +1,12 @@
 package com.example.tmitchell.mypersonalcookbook;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,30 +38,39 @@ public class ViewRecipe extends AppCompatActivity {
         TextView prepTime = (TextView) findViewById(R.id.prep_view);
         TextView cookTime = (TextView) findViewById(R.id.cook_view);
 
-        System.out.println("TEST: " + serves);
-
         Bundle extra = getIntent().getExtras();
         if (extra != null) {
             int id = extra.getInt("id");
-            RecipeDB r = new RecipeDB();
+            RecipeDB r;
             r = dh.getRecipe(id);
 
-            String test = serves.toString();
-            String test2 = prepTime.toString();
-            String test3 = cookTime.toString();
+            String servesStr = String.valueOf(r.get_serves());
+            String prepTimeStr = String.valueOf(r.get_prepTime());
+            String cookTimeStr = String.valueOf(r.get_cookTime());
 
-            System.out.println("TEST: " + test);
-
+            assert title != null;
             title.setText(r.get_title());
+
+            assert category != null;
             category.setText(r.get_category());
-            serves.setText(test);
+
+            assert serves != null;
+            serves.setText(servesStr);
+
+            assert ingredients != null;
             ingredients.setText(r.get_ingredientList());
+
+            assert directions != null;
             directions.setText(r.get_directions());
+
+            assert comments != null;
             comments.setText(r.get_comments());
-            prepTime.setText(test2);
-            cookTime.setText(test3);
 
+            assert prepTime != null;
+            prepTime.setText(prepTimeStr);
 
+            assert cookTime != null;
+            cookTime.setText(cookTimeStr);
 
         } else {
 
@@ -79,5 +92,58 @@ public class ViewRecipe extends AppCompatActivity {
             assert ll != null;
             ll.addView(error, params);
         }
+
+    }
+
+
+    /*Allows a recipe to be deleted*/
+    public void deleteRecipe(View view) {
+        /**
+         * CONFIRMATION BUTTON CODE ADAPTED FROM: http://www.androidhive.info/2011/09/
+         * how-to-show-alert-dialog-in-android/
+         * [ACCESSED 16/04/2016]
+         */
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ViewRecipe.this);
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Confirm Delete");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("Are you sure you want remove this recipe?");
+
+        // Setting Positive "Yes" Button
+        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatabaseHandler dh = new DatabaseHandler(ViewRecipe.this);
+                        Bundle extra = getIntent().getExtras();
+
+                        if (extra != null) {
+
+                            int id = extra.getInt("id");
+                            RecipeDB r = new RecipeDB();
+                            r = dh.getRecipe(id);
+
+                            dh.deleteRecipe(r);
+                        }
+
+                        startActivity(new Intent(ViewRecipe.this,
+                                MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    }
+                }
+
+        );
+
+        // Setting Negative "NO" Button
+        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener()
+
+                {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }
+
+        );
+
+        alertDialog.show();
     }
 }

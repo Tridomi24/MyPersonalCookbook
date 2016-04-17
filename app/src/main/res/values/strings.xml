@@ -36,6 +36,7 @@
     <string name="recipeCooktime">Cook Time</string>
     <string name="deleteRecipe_button">Delete Recipe</string>
     <string name="editRecipe_button">Edit Recipe</string>
+    <string name="title_activity_edit_recipe">Edit Recipe</string>
 
 
 </resources>

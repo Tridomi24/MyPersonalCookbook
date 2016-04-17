@@ -141,9 +141,21 @@ public class ViewRecipe extends AppCompatActivity {
                         dialog.cancel();
                     }
                 }
-
         );
 
         alertDialog.show();
+    }
+
+    public void editRecipe(View view) {
+        /**
+         * Starts the edit recipe activity and passes the
+         * recipe ID with the intent.
+         */
+
+        Bundle extra = getIntent().getExtras();
+        int id = extra.getInt("id");
+        Intent intent = new Intent(view.getContext(), EditRecipe.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 }

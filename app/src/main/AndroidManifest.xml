@@ -33,6 +33,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.tmitchell.mypersonalcookbook.MainActivity" />
         </activity>
+        <activity
+            android:name=".EditRecipe"
+            android:label="@string/title_activity_edit_recipe"
+            android:parentActivityName=".ViewRecipe"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tmitchell.mypersonalcookbook.ViewRecipe" />
+        </activity>
     </application>
 
 </manifest>

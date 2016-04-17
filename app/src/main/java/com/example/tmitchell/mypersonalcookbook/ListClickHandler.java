@@ -5,12 +5,11 @@ import android.view.View;
 import android.widget.AdapterView;
 
 /***************************************************************
-    Code in this class adapted from:
-    http://kb4dev.com/tutorial/android-listview/event-handling-
-    in-listview--making-list-items-clickable
-    [ACCESSED 10/04/2016]
-
-    Created by Tmitchell on 10/04/2016.
+ * Code in this class adapted from:
+ * http://kb4dev.com/tutorial/android-listview/event-handling-
+ * in-listview--making-list-items-clickable
+ * [ACCESSED 10/04/2016]
+ * Created by Tmitchell on 10/04/2016.
  ***************************************************************/
 
 public class ListClickHandler implements AdapterView.OnItemClickListener {
@@ -20,11 +19,11 @@ public class ListClickHandler implements AdapterView.OnItemClickListener {
 
         Intent intent = new Intent(view.getContext(), ViewRecipe.class);
 
-        RecipeDB data = (RecipeDB)adapter.getItemAtPosition(position);
+        RecipeDB data = (RecipeDB) adapter.getItemAtPosition(position);
 
         int id = data.get_id();
 
-        intent.putExtra("id", id );
+        intent.putExtra("id", id);
 
         view.getContext().startActivity(intent);
 

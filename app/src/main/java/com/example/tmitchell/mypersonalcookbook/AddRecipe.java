@@ -22,6 +22,7 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add_recipe);
@@ -36,7 +37,7 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
          ********************************************/
 
         LinearLayout ll = (LinearLayout) findViewById(R.id.addRecipe_LinearLayout);
-        ScrollView sv = (ScrollView) findViewById(R.id.addRecipe_ScrollView);
+        final ScrollView sv = (ScrollView) findViewById(R.id.addRecipe_ScrollView);
 
         Button saveButton = (Button) findViewById(R.id.addRecipe_submit_button);
         //CATEGORY DROPDOWN OPTIONS
@@ -84,11 +85,19 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
 
                                           @Override
                                           public void onClick(View v) {
+
+                                              //creates a validation object
+                                              final Validation valid = new Validation();
+
                                               /*************************************************
                                                Sets the variables from text views on click
                                                ************************************************/
                                               //STRINGS
                                               String title = title_in.getText().toString();
+                                              if (valid.nullCheck(title)) {
+                                                  title_in.setError("Title must be given a value!");
+                                              }
+
                                               String imgPath = "";
                                               String servesStr = serves_in.getText().toString();
                                               String catChoice = category.getSelectedItem().toString();
@@ -103,11 +112,16 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
                                               final int prepNo = Integer.parseInt(prepStr);
                                               final int cookNo = Integer.parseInt(cookStr);
 
-                                              db.addRecipe(new RecipeDB(0, title, imgPath, catChoice, servesNo,
-                                                      ingredients, directions, comments, prepNo, cookNo));
+                                              if (!valid.nullCheck(title)) {
+                                                  db.addRecipe(new RecipeDB(0, title, imgPath, catChoice, servesNo,
+                                                          ingredients, directions, comments, prepNo, cookNo));
 
-                                              startActivity(new Intent(AddRecipe.this,
-                                                      MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                                                  startActivity(new Intent(AddRecipe.this,
+                                                          MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                                              } else {
+                                                  //if the validation fail send the user to the top of the activity
+                                                  sv.fullScroll(ScrollView.FOCUS_UP);
+                                              }
                                           }
                                       }
         );

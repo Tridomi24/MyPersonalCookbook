@@ -1,5 +1,5 @@
 <resources>
-    <!--Strings Found Everywhere-->
+    <!--Strings Found in all activities-->
     <string name="app_name">MyPersonalCookbook</string>
 
     <!-- Strings found on Main Activity-->
@@ -13,30 +13,50 @@
     <!--Strings Found in ViewRecipe-->
     <string name="title_activity_view_recipe">View Recipe</string>
 
+    <!--Strings Found in EditRecipe-->
+
     <string name="recipeID">ID</string>
     <string name="recipeTitle">Title</string>
     <string name="recipeCategory">Category</string>
-    <string name="recipeCategory_label">Category:</string>
-    <string name="recipeID_label">ID:</string>
-    <string name="recipeTitle_label">Title:</string>
-    <string name="recipeServes_label">Serves:</string>
-    <string name="recipeIngredientsLabel">Ingredients:</string>
-    <string name="recipeDirections_label">Directions:</string>
+
     <string name="recipeServes">serves</string>
     <string name="recipeIngredients">Ingredients</string>
     <string name="recipeDirections">Directions</string>
     <string name="recipeComments">Comments</string>
 
-
-    <string name="button_viewRecipe">View Recipe</string>
     <string name="inputRecipe">View Recipe</string>
     <string name="recipePreptime">Prep Time</string>
-    <string name="recipePreptime_label">Prep Time:</string>
-    <string name="recipeCooktime_label">Cook Time:</string>
+
     <string name="recipeCooktime">Cook Time</string>
     <string name="deleteRecipe_button">Delete Recipe</string>
     <string name="editRecipe_button">Edit Recipe</string>
     <string name="title_activity_edit_recipe">Edit Recipe</string>
 
+    <!--Label Values-->
+    <string name="recipePreptime_label">Preparation Time:</string>
+    <string name="recipeCooktime_label">Cook Time:</string>
+    <string name="recipeCategory_label">Category:</string>
+    <string name="recipeID_label">ID:</string>
+    <string name="comments_label">Comments:</string>
+    <string name="recipeTitle_label">Title:</string>
+    <string name="recipeServes_label">Serves:</string>
+    <string name="recipeIngredients_label">Ingredients:</string>
+    <string name="recipeDirections_label">Directions:</string>
+
+
+    <string name="minutes">Mins</string>
+
+    <!--Default number values-->
+    <string name="default_serves_no">1</string>
+    <string name="default_time_val">0</string>
+
+    <!--Button Values-->
+    <string name="add_btn">Add Recipe</string>
+    <string name="button_viewRecipe">View Recipe</string>
+    <string name="btn_saveRecipe">Save Recipe</string>
+
+    <!--Button Descriptions-->
+    <string name="remove_ingredient_desc">Remove Last Ingredient</string>
+    <string name="add_ingredient_desc">Add a new Ingredient</string>
 
 </resources>

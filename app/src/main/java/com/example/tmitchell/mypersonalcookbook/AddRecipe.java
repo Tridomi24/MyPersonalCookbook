@@ -54,6 +54,7 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
 
         final ScrollView sv = (ScrollView) findViewById(R.id.addRecipe_ScrollView);
         final ImageButton addIngredientBtn = (ImageButton) findViewById(R.id.add_ingredient_button);
+        final ImageButton removeIngredientBtn = (ImageButton) findViewById(R.id.remove_ingredient_button);
 
         Button saveButton = (Button) findViewById(R.id.addRecipe_submit_button);
         //CATEGORY DROPDOWN OPTIONS
@@ -71,6 +72,17 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 addIngredientEdit();
+            }
+        });
+
+        /*************************
+         Remove ingredient button
+         *************************/
+        assert removeIngredientBtn != null;
+        removeIngredientBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeIngredientEdit();
             }
         });
 
@@ -200,11 +212,21 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
     }
 
 
+    //makes sure the user is directed to the main activity on back press
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(AddRecipe.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+
     /**
      * CODE TO ADD DYNAMIC EDIT TEXT BOXES ADAPTED FROM:
      * http://findnerd.com/list/view/Create-EditText-on-button-click-in-Android/2723/
      * [ACCESSED 01/05/16]
      */
+    //add a new edittext box in the view
     protected void addIngredientEdit() {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -223,6 +245,16 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
 
         ingredientLL.addView(ingredient);
         ingredientList.add(ingredient);
+    }
+
+    //remove the last edittextbox from the view if one exists.
+    protected void removeIngredientEdit() {
+
+        if (counter > 0) {
+            ingredientLL.removeViewAt(counter - 1);
+            counter--;
+        }
+
     }
 
 

@@ -192,7 +192,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_SERVES, recipe.get_serves()); // Recipe Serves
         values.put(KEY_INGREDIENTS, recipe.get_ingredientList());
         values.put(KEY_DIRECTIONS, recipe.get_directions());
-        values.put(KEY_COMMENTS, recipe.get_prepTime());
+        values.put(KEY_COMMENTS, recipe.get_comments());
         values.put(KEY_PREP_TIME, recipe.get_prepTime());
         values.put(KEY_COOK_TIME, recipe.get_cookTime());
 

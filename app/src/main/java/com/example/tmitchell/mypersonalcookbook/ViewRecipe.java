@@ -3,15 +3,20 @@ package com.example.tmitchell.mypersonalcookbook;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ViewRecipe extends AppCompatActivity {
+
+    private LinearLayout ingredientLL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +32,15 @@ public class ViewRecipe extends AppCompatActivity {
          ******************************/
         DatabaseHandler dh = new DatabaseHandler(this);
         LinearLayout ll = (LinearLayout) findViewById(R.id.viewRecipe_LinearLayout);
+        ingredientLL = (LinearLayout) findViewById(R.id.ingredients_view);
 
 
         TextView title = (TextView) findViewById(R.id.title_view);
         TextView category = (TextView) findViewById(R.id.category_view);
         TextView serves = (TextView) findViewById(R.id.serves_view);
-        TextView ingredients = (TextView) findViewById(R.id.ingredients_view);
         TextView directions = (TextView) findViewById(R.id.directions_view);
         TextView comments = (TextView) findViewById(R.id.comments_view);
+        System.out.println("TEST2: " + comments);
         TextView prepTime = (TextView) findViewById(R.id.prep_view);
         TextView cookTime = (TextView) findViewById(R.id.cook_view);
 
@@ -57,14 +63,42 @@ public class ViewRecipe extends AppCompatActivity {
             assert serves != null;
             serves.setText(servesStr);
 
-            assert ingredients != null;
-            ingredients.setText(r.get_ingredientList());
+            /***********************************
+             * DISPLAYING THE STORED INGREDIENTS
+             **********************************/
+
+            String ingredientsTmp = String.valueOf(r.get_ingredientList());
+            String ingtmp = ingredientsTmp.replace("\"", "");
+
+            String[] ingStore = ingtmp.split(",");
+
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT);
+            params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+
+            params.setMargins(0, 10, 0, 10);
+
+
+            for (int i = 0; i < ingStore.length; i++) {
+                TextView ingredient = new TextView(this);
+
+                ingredient.setId(i);
+                ingredient.setInputType(InputType.TYPE_CLASS_TEXT);
+                ingredient.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+                ingredient.setTextColor(Color.BLACK);
+                ingredient.setPadding(25, 0, 0, 0);
+                ingredient.setText(ingStore[i]);
+
+                ingredientLL.addView(ingredient);
+            }
 
             assert directions != null;
             directions.setText(r.get_directions());
 
             assert comments != null;
             comments.setText(r.get_comments());
+            System.out.println("TEST1: " + r.get_comments().toString());
 
             assert prepTime != null;
             prepTime.setText(prepTimeStr);
@@ -95,6 +129,13 @@ public class ViewRecipe extends AppCompatActivity {
 
     }
 
+    //makes sure the user is directed to the main activity on back press
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(ViewRecipe.this, MainActivity.class);
+        startActivity(intent);
+    }
 
     /*Allows a recipe to be deleted*/
     public void deleteRecipe(View view) {
@@ -120,7 +161,7 @@ public class ViewRecipe extends AppCompatActivity {
                         if (extra != null) {
 
                             int id = extra.getInt("id");
-                            RecipeDB r = new RecipeDB();
+                            RecipeDB r;
                             r = dh.getRecipe(id);
 
                             dh.deleteRecipe(r);

@@ -19,8 +19,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        //RECIPE TITLE
-
+        <!--RECIPE TITLE-->
         <TextView
             android:id="@+id/title_label_view"
             android:layout_width="match_parent"
@@ -33,11 +32,12 @@
             android:id="@+id/title_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:text="@string/recipeTitle"
             android:textColor="@color/colorDefault"
             android:textSize="15sp" />
 
-        //RECIPE CATEGORY
+        <!--RECIPE CATEGORY-->
 
         <TextView
             android:id="@+id/category_label_view"
@@ -52,11 +52,12 @@
             android:id="@+id/category_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:text="@string/recipeCategory"
             android:textColor="@color/colorDefault"
             android:textSize="15sp" />
 
-        //RECIPE SERVES
+        <!--RECIPE SERVES-->
 
         <TextView
             android:id="@+id/serves_label_view"
@@ -71,11 +72,12 @@
             android:id="@+id/serves_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:text="@string/recipeServes"
             android:textColor="@color/colorDefault"
             android:textSize="15sp" />
 
-        //RECIPE INGREDIENTS
+        <!--RECIPE INGREDIENTS-->
 
         <TextView
             android:id="@+id/ingredients_label_view"
@@ -83,18 +85,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginTop="10dp"
-            android:text="@string/recipeIngredientsLabel"
+            android:text="@string/recipeIngredients_label"
             android:textSize="20sp" />
 
-        <TextView
+        <LinearLayout
             android:id="@+id/ingredients_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:text="@string/recipeIngredients"
             android:textColor="@color/colorDefault"
             android:textSize="15sp" />
 
-        //RECIPE DIRECTIONS
+        <!--RECIPE DIRECTIONS-->
 
         <TextView
             android:id="@+id/directions_label_view"
@@ -110,29 +113,31 @@
             android:id="@+id/directions_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:text="@string/recipeDirections"
             android:textColor="@color/colorDefault"
             android:textSize="15sp" />
 
-        //RECIPE COMMENTS
+        <!--RECIPE COMMENTS-->
         <TextView
             android:id="@+id/comments_label_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginTop="10dp"
-            android:text="@string/recipeComments"
+            android:text="@string/comments_label"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/comments_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
             android:text="@string/recipeComments"
             android:textColor="@color/colorDefault"
             android:textSize="15sp" />
 
-        //RECIPE PREP TIME
+        <!--RECIPE PREP TIME-->
 
         <TextView
             android:id="@+id/prep_label_view"
@@ -143,16 +148,33 @@
             android:text="@string/recipePreptime_label"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/prep_view"
+        <RelativeLayout
+            android:id="@+id/preptime_rl_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/recipePreptime"
-            android:textColor="@color/colorDefault"
-            android:textSize="15sp" />
+            android:layout_height="match_parent">
 
-        //RECIPE COOK TIME
+            <TextView
+                android:id="@+id/prep_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="25dp"
+                android:text="@string/recipePreptime"
+                android:textColor="@color/colorDefault"
+                android:textSize="15sp" />
 
+            <TextView
+                android:id="@+id/viewRecipe_preptime_mins"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10sp"
+                android:layout_toEndOf="@+id/prep_view"
+                android:text="@string/minutes" />
+        </RelativeLayout>
+
+        <!--RECIPE COOK TIME-->
         <TextView
             android:id="@+id/cook_label_view"
             android:layout_width="match_parent"
@@ -162,50 +184,67 @@
             android:text="@string/recipeCooktime_label"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/cook_view"
+        <RelativeLayout
+            android:id="@+id/cooktime_rl_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/recipeCooktime"
-            android:textColor="@color/colorDefault"
-            android:textSize="15sp" />
+            android:layout_height="match_parent">
 
-        //EDIT A RECIPE
+            <TextView
+                android:id="@+id/cook_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                android:text="@string/recipeCooktime"
+                android:textColor="@color/colorDefault"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/viewRecipe_cooktime_mins"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10sp"
+                android:layout_toEndOf="@+id/cook_view"
+                android:text="@string/minutes" />
+        </RelativeLayout>
+
+        <!--EDIT A RECIPE-->
 
         <Button
             android:id="@+id/updateRecipe_Button"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:text="@string/editRecipe_button"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1.61"
-
             android:layout_gravity="center_horizontal"
-            android:onClick="editRecipe"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1.61"
             android:background="@color/colorPrimary"
-            android:textColor="@color/white" />
 
-        //DELETE A RECIPE
+            android:onClick="editRecipe"
+            android:text="@string/editRecipe_button"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <!--DELETE A RECIPE-->
 
         <Button
             android:id="@+id/deleteRecipe_Button"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:text="@string/deleteRecipe_button"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1.61"
-
             android:layout_gravity="center_horizontal"
-            android:onClick="deleteRecipe"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1.61"
             android:background="@color/colorPrimary"
-            android:textColor="@color/white" />
+
+            android:onClick="deleteRecipe"
+            android:text="@string/deleteRecipe_button"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
     </LinearLayout>
-
 
 </ScrollView>
 

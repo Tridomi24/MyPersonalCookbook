@@ -207,7 +207,6 @@ public class EditRecipe extends AppCompatActivity {
                                                     Intent intent = new Intent(v.getContext(), MainActivity.class);
                                                     intent.putExtra("id", id);
                                                     startActivity(intent);
-
                                                 } else {
                                                     //if the validation fail send the user to the top of the activity
                                                     sv.fullScroll(ScrollView.FOCUS_UP);

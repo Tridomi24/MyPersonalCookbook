@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -21,8 +22,9 @@ public class EditRecipe extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_recipe);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        final ScrollView sv = (ScrollView) findViewById(R.id.editRecipe_ScrollView);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -134,14 +136,19 @@ public class EditRecipe extends AppCompatActivity {
                                             EditText prep_in = (EditText) findViewById(R.id.editRecipe_preptime_in);
                                             EditText cook_in = (EditText) findViewById(R.id.editRecipe_cooktime_in);
 
-
                                             @Override
                                             public void onClick(View v) {
+                                                Validation valid = new Validation();
+
                                                 /*************************************************
                                                  Sets the variables from text views on click
                                                  ************************************************/
                                                 //STRINGS
                                                 String title = title_in.getText().toString();
+                                                if (valid.nullCheck(title)) {
+                                                    title_in.setError("Title must be given a value!");
+                                                }
+
                                                 String imgPath = "";
                                                 String servesStr = serves_in.getText().toString();
                                                 String catChoice = category.getSelectedItem().toString();
@@ -153,34 +160,58 @@ public class EditRecipe extends AppCompatActivity {
 
                                                 //INTS
                                                 final int servesNo = Integer.parseInt(servesStr);
-                                                final int prepNo = Integer.parseInt(prepStr);
-                                                final int cookNo = Integer.parseInt(cookStr);
-
-                                                Bundle extra = getIntent().getExtras();
-                                                if (extra != null) {
-                                                    int id = extra.getInt("id");
-                                                    RecipeDB r;
-                                                    r = dh.getRecipe(id);
-
-                                                    r.set_title(title);
-                                                    r.set_image(imgPath);
-                                                    r.set_serves(servesNo);
-                                                    r.set_category(catChoice);
-                                                    r.set_ingredientList(ingredients);
-                                                    r.set_directions(directions);
-                                                    r.set_comments(comments);
-                                                    r.set_prepTime(prepNo);
-                                                    r.set_cookTime(cookNo);
-
-                                                    dh.updateRecipe(r);
-
+                                                if (!valid.reasonableServes(servesNo)) {
+                                                    serves_in.setError("Must serve at least one person, 20 maximum");
                                                 }
-                                                //Go back to the recipe view page, passes the ID with the intent
-                                                int id = extra.getInt("id");
-                                                Intent intent = new Intent(v.getContext(), EditRecipe.class);
-                                                intent.putExtra("id", id);
-                                                startActivity(intent);
 
+                                                final int prepNo = Integer.parseInt(prepStr);
+                                                if (!valid.reasonableTime(prepNo)) {
+                                                    prep_in.setError("Does it really take more than 5 hours to prepare?");
+                                                }
+
+                                                final int cookNo = Integer.parseInt(cookStr);
+                                                if (!valid.reasonableTime(cookNo)) {
+                                                    cook_in.setError("Does it really take more than 5 hours to cook?");
+                                                }
+
+                                                /**
+                                                 * If the following validation returns true:
+                                                 * Title is not null.
+                                                 * Reasonable serve value.
+                                                 * Reasonable prep time.
+                                                 * Reasonable cook time.
+                                                 * */
+                                                if (!valid.nullCheck(title) && valid.reasonableServes(servesNo)
+                                                        && valid.reasonableTime(prepNo) && valid.reasonableTime(cookNo)) {
+                                                    Bundle extra = getIntent().getExtras();
+                                                    if (extra != null) {
+                                                        int id = extra.getInt("id");
+                                                        RecipeDB r;
+                                                        r = dh.getRecipe(id);
+
+                                                        r.set_title(title);
+                                                        r.set_image(imgPath);
+                                                        r.set_serves(servesNo);
+                                                        r.set_category(catChoice);
+                                                        r.set_ingredientList(ingredients);
+                                                        r.set_directions(directions);
+                                                        r.set_comments(comments);
+                                                        r.set_prepTime(prepNo);
+                                                        r.set_cookTime(cookNo);
+
+                                                        dh.updateRecipe(r);
+
+                                                    }
+                                                    //Go back to the recipe view page, passes the ID with the intent
+                                                    int id = extra.getInt("id");
+                                                    Intent intent = new Intent(v.getContext(), MainActivity.class);
+                                                    intent.putExtra("id", id);
+                                                    startActivity(intent);
+
+                                                } else {
+                                                    //if the validation fail send the user to the top of the activity
+                                                    sv.fullScroll(ScrollView.FOCUS_UP);
+                                                }
                                             }
                                         }
         );

@@ -109,10 +109,30 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
 
                                               //INTS
                                               final int servesNo = Integer.parseInt(servesStr);
-                                              final int prepNo = Integer.parseInt(prepStr);
-                                              final int cookNo = Integer.parseInt(cookStr);
+                                              if (!valid.reasonableServes(servesNo)) {
+                                                  serves_in.setError("Must serve at least one person, 20 maximum");
+                                              }
 
-                                              if (!valid.nullCheck(title)) {
+                                              final int prepNo = Integer.parseInt(prepStr);
+                                              if (!valid.reasonableTime(prepNo)) {
+                                                  prep_in.setError("Does it really take more than 5 hours to prepare?");
+                                              }
+
+                                              final int cookNo = Integer.parseInt(cookStr);
+                                              if (!valid.reasonableTime(cookNo)) {
+                                                  cook_in.setError("Does it really take more than 5 hours to cook?");
+                                              }
+
+                                              /**
+                                               * If the following validation returns true:
+                                               * Title is not null.
+                                               * Reasonable serve value.
+                                               * Reasonable prep time.
+                                               * Reasonable cook time.
+                                               * */
+                                              if (!valid.nullCheck(title) && valid.reasonableServes(servesNo)
+                                                      && valid.reasonableTime(prepNo) && valid.reasonableTime(cookNo)) {
+
                                                   db.addRecipe(new RecipeDB(0, title, imgPath, catChoice, servesNo,
                                                           ingredients, directions, comments, prepNo, cookNo));
 

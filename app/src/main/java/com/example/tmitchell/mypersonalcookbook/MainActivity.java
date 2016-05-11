@@ -3,6 +3,7 @@ package com.example.tmitchell.mypersonalcookbook;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -88,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
                     new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
                             RelativeLayout.LayoutParams.WRAP_CONTENT);
             params.addRule(RelativeLayout.BELOW, R.id.numberOfRecipes);
+
+            noEntries.setGravity(Gravity.CENTER);
             noEntries.setTextSize(20);
             noEntries.setLayoutParams(params);
 

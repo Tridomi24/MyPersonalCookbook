@@ -1,5 +1,11 @@
 package com.example.tmitchell.mypersonalcookbook;
 
+/**
+ * Authour: Tmitchell
+ * Created: 04/04/2016.
+ * PURPOSE: Contains all of the methods for the AddRecipe Activity
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -100,6 +106,7 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         final Spinner category = (Spinner) findViewById(R.id.addRecipe_category_in);
+        assert category != null;
         category.setAdapter(categoryAdapter);
 
         category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -131,7 +138,7 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
 
                                           @Override
                                           public void onClick(View v) {
-                                              ArrayList<String> ingredients = new ArrayList<String>();
+                                              ArrayList<String> ingredients = new ArrayList<>();
 
                                               /*************************************************
                                                Puts the ingredients values in to an array
@@ -200,6 +207,7 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
                                                           MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                                               } else {
                                                   //if the validation fail send the user to the top of the activity
+                                                  assert sv != null;
                                                   sv.fullScroll(ScrollView.FOCUS_UP);
                                               }
                                           }

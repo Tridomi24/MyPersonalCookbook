@@ -1,4 +1,9 @@
 package com.example.tmitchell.mypersonalcookbook;
+/**
+ * Authour: Tmitchell
+ * Created: 04/04/2016.
+ * PURPOSE: Main Class which handles the Main Activity
+ */
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
         TextView recipeCount = (TextView) findViewById(R.id.numberOfRecipes);
         ListView recipeList = (ListView) findViewById(R.id.storedRecipesList);
 
-        List<RecipeDB> recipeStore = new ArrayList<RecipeDB>();
-
+        List<RecipeDB> recipeStore;
 
 
         recipeStore = db.getAllRecipes();

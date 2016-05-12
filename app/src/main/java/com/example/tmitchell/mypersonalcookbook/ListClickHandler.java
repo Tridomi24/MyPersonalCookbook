@@ -1,4 +1,9 @@
 package com.example.tmitchell.mypersonalcookbook;
+/**
+ * Authour: Tmitchell
+ * Created: 10/04/2016.
+ * PURPOSE: Class that handles when the dynamic navigation menu is clicked in the main class
+ */
 
 import android.content.Intent;
 import android.view.View;

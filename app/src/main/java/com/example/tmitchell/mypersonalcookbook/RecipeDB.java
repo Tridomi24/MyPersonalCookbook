@@ -6,9 +6,10 @@ package com.example.tmitchell.mypersonalcookbook;
  * [Accessed 04/04/2016]
  */
 
-
 /**
- * Created by Tmitchell on 04/04/2016.
+ * Author: Tmitchell
+ * Created: 04/04/2016
+ * Purpose: Class for the database object.
  */
 public class RecipeDB {
 

@@ -1,5 +1,9 @@
 package com.example.tmitchell.mypersonalcookbook;
-
+/**
+ * Authour: Tmitchell
+ * Created: 08/04/2016.
+ * PURPOSE: Contains all of the methods for the EditRecipe Activity
+ */
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -85,6 +89,7 @@ public class EditRecipe extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item, categories);
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        assert category != null;
         category.setAdapter(categoryAdapter);
 
         category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -138,7 +143,6 @@ public class EditRecipe extends AppCompatActivity {
             assert title != null;
             title.setText(r.get_title());
 
-            assert category != null;
             switch (r.get_category()) {
                 case "Starter":
                     category.setSelection(0);
@@ -216,7 +220,7 @@ public class EditRecipe extends AppCompatActivity {
                                             public void onClick(View v) {
                                                 Validation valid = new Validation();
 
-                                                ArrayList<String> ingredients = new ArrayList<String>();
+                                                ArrayList<String> ingredients = new ArrayList<>();
 
                                                 /*************************************************
                                                  Puts the ingredients values in to an array
@@ -301,12 +305,15 @@ public class EditRecipe extends AppCompatActivity {
 
                                                     }
                                                     //Go back to the recipe view page, passes the ID with the intent
+                                                    assert extra != null;
                                                     int id = extra.getInt("id");
+
                                                     Intent intent = new Intent(v.getContext(), MainActivity.class);
                                                     intent.putExtra("id", id);
                                                     startActivity(intent);
                                                 } else {
                                                     //if the validation fail send the user to the top of the activity
+                                                    assert sv != null;
                                                     sv.fullScroll(ScrollView.FOCUS_UP);
                                                 }
                                             }

@@ -1,5 +1,9 @@
 package com.example.tmitchell.mypersonalcookbook;
-
+/**
+ * Author: Tmitchell
+ * Created: 06/04/2016.
+ * Purpose: contains methods that are used in the ViewRecipe Activity
+ */
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;

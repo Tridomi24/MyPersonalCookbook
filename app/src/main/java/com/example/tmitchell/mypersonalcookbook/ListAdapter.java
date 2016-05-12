@@ -10,7 +10,10 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by Tmitchell on 08/04/2016.
+ * Author: Tmitchell
+ * Created: 08/04/2016.
+ * Purpose: List adapter for the dynamic menu in the main activity
+ *
  * Code adapted from: http://stackoverflow.com/questions/8166497/custom-adapter-for-list-view
  * [ACCESSED ON 08/04/16]
  */
@@ -70,6 +73,7 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
                 //Desserts will set the header to visible for the first row
                 if (rCat.getText().equals("Dessert")) {
 
+                    assert rID != null;
                     if (dessertCount == 0 || rID.getText().equals(firstDessert)) {
                         rCat.setVisibility(View.VISIBLE);
 
@@ -84,6 +88,7 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
 
                 //Mains will set the header to visible for the first row
                 if (rCat.getText().equals("Main")) {
+                    assert rID != null;
                     if (mainCount == 0 || rID.getText().equals(firstMain)) {
                         rCat.setVisibility(View.VISIBLE);
 
@@ -97,6 +102,7 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
                 //Snack will set the header to visible for the first row
                 if (rCat.getText().equals("Snack")) {
 
+                    assert rID != null;
                     if (snackCount == 0 || rID.getText().equals(firstSnack)) {
                         rCat.setVisibility(View.VISIBLE);
 
@@ -111,6 +117,7 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
                 //Starters will set the header to visible for the first row
                 if (rCat.getText().equals("Starter")) {
 
+                    assert rID != null;
                     if (starterCount == 0 || rID.getText().equals(firstStarter)) {
                         rCat.setVisibility(View.VISIBLE);
 

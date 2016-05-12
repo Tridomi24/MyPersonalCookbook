@@ -1,5 +1,11 @@
 package com.example.tmitchell.mypersonalcookbook;
 /**
+ * Authour: Tmitchell
+ * Created: 04/04/2016.
+ * PURPOSE: Contains all of the methods for interacting with the database
+ */
+
+/**
  * Code for creating the SQL lite Database for storing recipes on the device.
  * Code adapted from:
  * http://www.androidhive.info/2011/11/android-sqlite-database-tutorial/
@@ -19,10 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * Created by Tmitchell on 04/04/2016.
- * PURPOSE: Contains all of the methods for interacting with the database
- */
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**************************

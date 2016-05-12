@@ -40,7 +40,6 @@ public class ViewRecipe extends AppCompatActivity {
         TextView serves = (TextView) findViewById(R.id.serves_view);
         TextView directions = (TextView) findViewById(R.id.directions_view);
         TextView comments = (TextView) findViewById(R.id.comments_view);
-        System.out.println("TEST2: " + comments);
         TextView prepTime = (TextView) findViewById(R.id.prep_view);
         TextView cookTime = (TextView) findViewById(R.id.cook_view);
 
@@ -98,7 +97,6 @@ public class ViewRecipe extends AppCompatActivity {
 
             assert comments != null;
             comments.setText(r.get_comments());
-            System.out.println("TEST1: " + r.get_comments().toString());
 
             assert prepTime != null;
             prepTime.setText(prepTimeStr);

@@ -8,6 +8,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -41,6 +42,13 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        /**
+         * code to stop keyboard from automatically popping up taken from:
+         * http://stackoverflow.com/questions/2496901/android-on-screen-keyboard-auto-popping-up
+         * Accessed: 05/05/2016
+         */
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         final DatabaseHandler db = new DatabaseHandler(this);
 
@@ -154,7 +162,6 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
                                               String imgPath = "";
                                               String servesStr = serves_in.getText().toString();
                                               String catChoice = category.getSelectedItem().toString();
-                                              //String ingredients = ingredients_in.getText().toString();
                                               String directions = directions_in.getText().toString();
                                               String comments = comments_in.getText().toString();
                                               String prepStr = prep_in.getText().toString();
@@ -187,7 +194,7 @@ public class AddRecipe extends AppCompatActivity implements View.OnClickListener
                                                       && valid.reasonableTime(prepNo) && valid.reasonableTime(cookNo)) {
 
                                                   db.addRecipe(new RecipeDB(0, title, imgPath, catChoice, servesNo,
-                                                          ingredientStr.toString(), directions, comments, prepNo, cookNo));
+                                                          ingredientStr, directions, comments, prepNo, cookNo));
 
                                                   startActivity(new Intent(AddRecipe.this,
                                                           MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));

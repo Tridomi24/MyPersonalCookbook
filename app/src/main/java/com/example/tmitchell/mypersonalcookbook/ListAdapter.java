@@ -79,7 +79,7 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
 
                         firstDessert = (String) rID.getText();
 
-                        dessertCount = +1;
+                        dessertCount += 1;
 
                     } else if (dessertCount >= 1 && !rID.getText().equals(firstDessert)) {
                         rCat.setVisibility(View.GONE);
@@ -94,7 +94,7 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
 
                         firstMain = (String) rID.getText();
 
-                        mainCount = +1;
+                        mainCount += 1;
                     } else if (mainCount >= 1 && !rID.getText().equals(firstMain)) {
                         rCat.setVisibility(View.GONE);
                     }
@@ -108,7 +108,7 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
 
                         firstSnack = (String) rID.getText();
 
-                        snackCount = +1;
+                        snackCount += 1;
                     } else if (snackCount >= 1 && !rID.getText().equals(firstSnack)) {
                         rCat.setVisibility(View.GONE);
                     }
@@ -123,7 +123,7 @@ public class ListAdapter extends ArrayAdapter<RecipeDB> {
 
                         firstStarter = (String) rID.getText();
 
-                        starterCount = +1;
+                        starterCount += 1;
                     } else if (starterCount >= 1 && !rID.getText().equals(firstStarter)) {
                         rCat.setVisibility(View.GONE);
                     }
